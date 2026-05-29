@@ -27,7 +27,7 @@ export default function Projets() {
       <header role="banner" className="header">
         <div className="container">
           <Link to="/" className="logo" aria-label="Accueil SMOOD Tech">
-            <img src="/assets/icon.png" alt="SMOOD Tech" className="logo-icon" />
+            <img src="/icon.png" alt="SMOOD Tech" className="logo-icon" />
           </Link>
           
           <nav role="navigation" aria-label="Menu principal">
@@ -66,7 +66,7 @@ export default function Projets() {
             {/* Logo Central */}
             <div className="hub-center">
               <div className="hub-logo-circle">
-                <img src="/assets/icon.png" alt="SMOOD Tech Hub" className="hub-logo" />
+                <img src="/icon.png" alt="SMOOD Tech Hub" className="hub-logo" />
                 <h2 className="hub-title">SMOOD Tech</h2>
                 <p className="hub-subtitle">Nos Projets</p>
               </div>
@@ -425,7 +425,7 @@ export default function Projets() {
               {/* Colonne À propos */}
               <div className="footer-about">
                 <div className="footer-logo">
-                  <img src="/assets/icon.png" alt="SMOOD Tech" className="footer-logo-img" />
+                  <img src="/icon.png" alt="SMOOD Tech" className="footer-logo-img" />
                   <h3>SMOOD Tech</h3>
                 </div>
                 <p className="footer-description">Solutions digitales sur mesure pour propulser votre entreprise vers le futur. Innovation, expertise et accompagnement personnalisé.</p>
