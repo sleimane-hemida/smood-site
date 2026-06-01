@@ -201,6 +201,7 @@ export default function Accueil() {
                   <li><Link to="/apropos">À propos</Link></li>
                 </ul>
               </div>
+              {/* commentaire pour tester le déploiement de la branche de développement */}
               
               <div className="footer-links">
                 <h4>Services</h4>
