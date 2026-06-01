@@ -28,11 +28,13 @@ app.get('/api/health', async (_request, response) => {
 
 app.get('/api/dashboard', async (_request, response) => {
   try {
-    const analytics = await getDashboardAnalytics()
+    const analytics = await getDashboardAnalytics(_request.query.month)
 
     response.json(analytics)
   } catch (error) {
-    response.status(503).json({
+    const statusCode = error.message.includes('invalide') ? 400 : 503
+
+    response.status(statusCode).json({
       message: error.message,
     })
   }

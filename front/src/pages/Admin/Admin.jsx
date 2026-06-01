@@ -125,9 +125,16 @@ function buildChartGeometry(points) {
 }
 
 export default function Admin() {
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}`;
+  });
   const [analytics, setAnalytics] = useState({
     metrics: dashboard.metrics,
     visitorsTrend: dashboard.visitorsTrend,
+    selectedMonthLabel: 'Mois en cours',
   });
   const [messages, setMessages] = useState(dashboard.contactMessages);
 
@@ -139,7 +146,7 @@ export default function Admin() {
 
     async function loadAnalytics() {
       try {
-        const response = await fetch('/api/dashboard');
+        const response = await fetch(`/api/dashboard?month=${selectedMonth}`);
 
         if (!response.ok) {
           return;
@@ -154,6 +161,7 @@ export default function Admin() {
         setAnalytics({
           metrics: data.metrics || dashboard.metrics,
           visitorsTrend: data.visitorsTrend || dashboard.visitorsTrend,
+          selectedMonthLabel: data.selectedMonthLabel || 'Mois en cours',
         });
       } catch (_error) {
         // Keep fallback mock data when analytics data is unavailable.
@@ -186,7 +194,7 @@ export default function Admin() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [selectedMonth]);
 
   return (
     <div className="admin-shell">
@@ -198,6 +206,15 @@ export default function Admin() {
             <p className="admin-topbar-text">
               Dashboard visuel avec des donnees de demonstration pour travailler le design avant de brancher la vraie logique.
             </p>
+          </div>
+          <div className="admin-month-filter">
+            <label htmlFor="admin-month">Filtrer par mois</label>
+            <input
+              id="admin-month"
+              type="month"
+              value={selectedMonth}
+              onChange={(event) => setSelectedMonth(event.target.value)}
+            />
           </div>
         </section>
 
@@ -217,6 +234,7 @@ export default function Admin() {
             <div>
               <p className="admin-kicker">Evolution mensuelle</p>
               <h2>Courbe des visiteurs</h2>
+              <p className="admin-chart-subtitle">Periode selectionnee : {analytics.selectedMonthLabel}</p>
             </div>
             <div className="admin-chart-legend">
               <span className="admin-chart-legend-dot"></span>

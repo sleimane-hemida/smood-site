@@ -16,7 +16,7 @@ function App() {
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/services" element={<Services />} />
         <Route path="/projets" element={<Projets />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin-smood-stat" element={<Admin />} />
       </Routes>
     </Router>
   );

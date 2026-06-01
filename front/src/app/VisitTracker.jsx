@@ -20,7 +20,7 @@ export default function VisitTracker() {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname === '/admin') {
+    if (location.pathname === '/admin-smood-stat') {
       return
     }
 
