@@ -1,16 +1,37 @@
-# React + Vite
+# smood-site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce depot est maintenant organise pour contenir le frontend et le backend dans le meme repository.
 
-Currently, two official plugins are available:
+## Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `front/` : application React + Vite
+- `back/` : API Node.js + Express
 
-## React Compiler
+## Commandes utiles
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Depuis la racine du repository :
 
-## Expanding the ESLint configuration
+- `npm run dev:back`
+- `npm run start:back`
+- `npm run dev:front`
+- `npm run build:front`
+- `npm run lint:front`
+- `npm run preview:front`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Backend
+
+Le dossier `back/` contient maintenant un backend Node.js avec Express.
+
+Endpoints disponibles :
+
+- `GET /`
+- `GET /api/health`
+- `GET /api/dashboard`
+
+Le backend ecoute par defaut sur le port `3001`.
+
+## Admin
+
+Une interface administrateur est disponible sur `http://localhost:5173/admin` lorsque le frontend Vite est lance.
+
+Le frontend utilise le proxy Vite pour rediriger les appels `/api` vers le backend Node.js sur le port `3001` en developpement.
