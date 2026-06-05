@@ -3,9 +3,13 @@ import pg from 'pg'
 const { Pool } = pg
 
 function buildPoolConfig() {
-  const connectionUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.smood_POSTGRES_URL;
+  let connectionUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.smood_POSTGRES_URL;
 
   if (connectionUrl) {
+    // Vercel ajoute souvent ?sslmode=require, ce qui fait bugger le module 'pg'
+    // On le retire de la chaîne pour forcer nos propres paramètres SSL
+    connectionUrl = connectionUrl.split('?')[0];
+
     return {
       connectionString: connectionUrl,
       ssl: { rejectUnauthorized: false }, // Indispensable pour Vercel Postgres / Supabase
